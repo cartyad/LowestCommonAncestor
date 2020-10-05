@@ -56,6 +56,8 @@ public class LCA {
 		{
 			return true;
 		}
+		path.remove(path.size()-1);
+		return false;
 	}
 
 }
