@@ -14,12 +14,19 @@ class LCATest {
 	}
 	
 	@Test
-	public void testTreeConstructor() {
+	public void testTreeConstructor() 
+	{
 		//Create a tree with only one single node, the root
 		Node rootNode = new Node(0);
 		assertEquals("Root Value is Zero",0 ,rootNode.value);
 		assertEquals("Only node is root so null is expected",null ,rootNode.right);
 		assertEquals("Only node is root so null is expected",null ,rootNode.left);
+	}
+	
+	@Test
+	public void testNonExistingNodes()
+	{
+		createTree();
 	}
 	
 	
@@ -35,8 +42,7 @@ class LCATest {
 		tree.root.right.left = new Node(0);
 		tree.root.right.right = new Node(8);
 		tree.root.left.right.left = new Node(7);
-		tree.root.left.right.right = new Node(4);
-		
+		tree.root.left.right.right = new Node(4);	
 	}
 
 }
