@@ -2,11 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
-	int data; 
-    Node left, right; 
-  
-    Node(int value) { 
-        data = value; 
-        left = right = null; 
-    } 
+	int value;
+	Node left, right;
+
+	Node(int value) {
+		this.value = value;
+		this.left = null;
+		this.right = null;
+	}
+   
 }
+
+
