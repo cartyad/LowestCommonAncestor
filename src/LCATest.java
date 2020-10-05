@@ -33,7 +33,7 @@ class LCATest {
 	}
 	
 	@Test
-	public void testSameNode()
+	public void testIdenticalNodeInput()
 	{
 		createTree();
 		assertEquals(3 ,tree.findLCA(3, 3));
@@ -41,6 +41,17 @@ class LCATest {
 		assertEquals(3 ,tree.findLCA(1, 3));
 		assertEquals(1 ,tree.findLCA(1, 1));
 		assertEquals(5 ,tree.findLCA(5, 5));
+	}
+	
+	@Test
+	public void testSmallTree() {
+		tree.root = new Node(3);
+		tree.root.left = new Node(5);
+		assertEquals(3 ,tree.root.value);
+		assertEquals(5 ,tree.root.left.value);
+		assertNull(tree.root.right);
+		assertEquals(3 ,tree.findLCA(3, 5));
+		assertEquals(3 ,tree.findLCA(5, 3));
 	}
 	
 	
