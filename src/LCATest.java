@@ -21,5 +21,15 @@ class LCATest {
 		assertEquals("Only node is root so null is expected",null ,rootNode.right);
 		assertEquals("Only node is root so null is expected",null ,rootNode.left);
 	}
+	
+	
+	
+	
+	public void createTree()
+	{
+		tree.root = new Node(3);
+		
+		
+	}
 
 }
