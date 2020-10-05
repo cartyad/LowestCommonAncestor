@@ -26,7 +26,7 @@ class LCATest {
 	@Test
 	public void testNonExistingNodesWithinTheTree()
 	{
-		createTree();
+		createSampleTree();
 		assertEquals("Element doesn't exist expect -1",-1 ,tree.findLCA(1, 23));
 		assertEquals("Elements don't exist expect -1",-1,tree.findLCA(9,10));
 		assertEquals("null",3 ,tree.findLCA(3, 3));
@@ -35,7 +35,7 @@ class LCATest {
 	@Test
 	public void testIdenticalNodeInput()
 	{
-		createTree();
+		createSampleTree();
 		assertEquals(3 ,tree.findLCA(3, 3));
 		assertEquals(3 ,tree.findLCA(3, 5));
 		assertEquals(3 ,tree.findLCA(1, 3));
@@ -55,9 +55,20 @@ class LCATest {
 	}
 	
 	
+	@Test
+	public void testTree() 
+	{
+		createSampleTree();
+		assertEquals(3 ,tree.findLCA(6, 1));
+		assertEquals(2 ,tree.findLCA(7, 4));
+		assertEquals(1 ,tree.findLCA(0, 8));
+		assertEquals(3 ,tree.findLCA(1, 5));
+		assertEquals(3 ,tree.findLCA(5, 1));
+	}
 	
 	
-	public void createTree()
+	
+	public void createSampleTree()
 	{
 		tree.root = new Node(3);
 		tree.root.left = new Node(5);
