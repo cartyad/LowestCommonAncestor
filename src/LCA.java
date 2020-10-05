@@ -35,9 +35,18 @@ public class LCA {
 		}
 		
 		//Handles the input of a null root
-		if (root == null) {
+		if (root == null) 
+		{
 			return false;
 		}
+		
+		path.add(root.value);
+		//If the node's value is found return as true
+		if (root.value == n) 
+		{
+			return true;
+		}
+		
 	}
 
 }
