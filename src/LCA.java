@@ -29,7 +29,10 @@ public class LCA {
 	
 	private boolean findPath(Node root, int n, List<Integer> path)
 	{
-		
+		//Handles inputs of negative numbers and returns false
+		if(n<0){
+			return false;
+		}
 	}
 
 }
