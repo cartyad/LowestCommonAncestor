@@ -46,7 +46,16 @@ public class LCA {
 		{
 			return true;
 		}
-		
+		//Reiterates the findPath function to search through nodes to the left of the current node
+		if (root.left != null && findPath(root.left, n, path)) 
+		{
+			return true;
+		}
+		//Reiterates the findPath function to search through nodes to the right of the current node
+		if (root.right != null && findPath(root.right, n, path)) 
+		{
+			return true;
+		}
 	}
 
 }
