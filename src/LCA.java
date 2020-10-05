@@ -33,6 +33,11 @@ public class LCA {
 		if(n<0){
 			return false;
 		}
+		
+		//Handles the input of a null root
+		if (root == null) {
+			return false;
+		}
 	}
 
 }
