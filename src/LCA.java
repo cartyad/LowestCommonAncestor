@@ -19,6 +19,12 @@ public class LCA {
 		if (!findPath(root, v, path1) || !findPath(root, w, path2)) {
 			return -1;
 		}
+		int i;
+		for (i = 0; i < path1.size() && i < path2.size(); i++) {
+			if (!path1.get(i).equals(path2.get(i)))
+				break;
+		}
+		return path1.get(i-1);
 	}
 	
 	private boolean findPath(Node root, int n, List<Integer> path)
