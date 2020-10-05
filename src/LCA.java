@@ -9,7 +9,9 @@ public class LCA {
 	
 	public int findLCA(int v, int w) {
 		
-		
+		path1.clear();
+		path2.clear();
+		return findLCA(root, v, w);
 	}
 
 }
