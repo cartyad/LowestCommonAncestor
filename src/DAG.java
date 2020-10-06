@@ -7,5 +7,9 @@ public class DAG {
 	private int[] indegree;
 	private int[] visited;
 	
+	public DAG(int V)
+	{
+		
+	}
 
 }
