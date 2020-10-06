@@ -36,6 +36,10 @@ public class DAG {
 	{
         return V;
     }
+	public int E()
+	{
+        return E;
+    }
 	
 
 }
