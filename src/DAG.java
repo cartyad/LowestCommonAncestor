@@ -9,6 +9,11 @@ public class DAG {
 	
 	public DAG(int V)
 	{
+		if(V<0)
+		{
+			throw new IllegalArgumentException("Number of vertices in the DAG must be greater than 0.");
+		}
+		
 		
 	}
 
