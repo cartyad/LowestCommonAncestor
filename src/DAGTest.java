@@ -94,16 +94,16 @@ class DAGTest {
 	}
 	
 	//test that adding an edge between two vertices crates a connection
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testAddEdge()
 	{
 		acyclicGraph();//has no cycle
 		cycleGraph();//has cycle
 		assertEquals("Number of edges for DAG is", 7, acyclic.E());
-		acyclic.addEdge(5, 8);
+		acyclic.addEdge(5, 7);
 		assertEquals("Number of edges for DAG should increase to", 8, acyclic.E());
-		acyclic.addEdge(-1, -1);
-		assertEquals("This should do nothing as an exception is thrown, once the values are validated", 0, acyclic.E());
+		assertThrows(IllegalArgumentException.class, () -> {acyclic.addEdge(-1, -1);});
+		assertEquals( 8, acyclic.E());
 	}
 	
 	//test that the graph is acyclic, if there is a cycle the method will throw true that there is a cycle
@@ -122,7 +122,7 @@ class DAGTest {
 	}
 	
  	//Testing the LCA method, will test for various problems that may arise
-	@Test(expected = IllegalArgumentException.class) 
+	@Test//(expected = IllegalArgumentException.class) 
 	public void testLCA()
 	{
 		acyclicGraph();
@@ -130,10 +130,17 @@ class DAGTest {
 		directAcyclicGraph();
 		//test the lca for both acyclic and cycled graph using two vertices
 		assertEquals("Can be its own ancestor", 3, acyclic.findLCA(2, 3));
-		assertEquals("Because it is cyclic it will throw an exception", 1, cycle.findLCA(1, 4));
+		assertThrows(IllegalArgumentException.class, () -> {cycle.findLCA(1, 4);});
+		//assertThrows(IllegalArgumentException.class, () -> {directAcyclic.findLCA(3, 4);});
+		//assertThrows(IllegalArgumentException.class, () -> {directAcyclic.findLCA(1, 4);});
+		//assertThrows(IllegalArgumentException.class, () -> {directAcyclic.findLCA(5, 2);});
+		//assertThrows(IllegalArgumentException.class, () -> {directAcyclic.findLCA(1, 5);});
+		//assertThrows(IllegalArgumentException.class, () -> {directAcyclic.findLCA(5, 1);});
+		
+		//assertEquals("Because it is cyclic it will throw an exception", 1, cycle.findLCA(1, 4));
 		//showing different levels within the graph
 		assertEquals("", 7, directAcyclic.findLCA(3, 4));
-		assertEquals("", 7, directAcyclic.findLCA(1, 4));
+		assertEquals("", 2, directAcyclic.findLCA(1, 4));
 		assertEquals("", 7, directAcyclic.findLCA(5, 2));
 		//swapping around the vertices v and w
 		assertEquals("", 5, directAcyclic.findLCA(1, 5));
@@ -142,7 +149,13 @@ class DAGTest {
 		assertEquals("Can be its own ancestor", 3, acyclic.findLCA(3, 3));
 		//empty graph
 		DAG emptyG = new DAG(0);
-		assertEquals("Should throw exception", null, acyclic.findLCA(3, 3));
+		assertThrows(IllegalArgumentException.class, () -> {acyclic.findLCA(3, 3);});
+		//assertEquals("Should throw exception", null, acyclic.findLCA(3, 3));
+		
+		//assertThrows(IllegalArgumentException.class, () -> {
+	    //  StringUtils.convertToInt(st);
+	    //});
+		
 	}
 	
 	//function to create an acyclic graph that I will use in the tests
