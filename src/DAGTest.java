@@ -10,10 +10,11 @@ class DAGTest {
 	DAG directAcyclic = new DAG(9);//creates an acyclic graph
 	
 	//testing the set up of the constructor
-	@Test(expected = IllegalArgumentException.class)//must be non-negative
+	@Test
 	public void testDAG() 
 	{
-		DAG negativeTest = new DAG(-2);//will throw IllegalException if out of bounds
+		
+		assertThrows(IllegalArgumentException.class, () -> {DAG negativeTest = new DAG(-2);});		
 	}
 	
 	//Test the indegree of a vertex in the graph
@@ -36,9 +37,6 @@ class DAGTest {
 		assertThrows(IllegalArgumentException.class, () -> {acyclic.outdegree(9);});
 		assertEquals("0 only has one outdegree", 1, acyclic.outdegree(0));
 		assertEquals("0 for the cycle graph has two outdegree edges", 2, cycle.outdegree(0));
-		//assertThrows(IllegalArgumentException.class, () -> {
-	    //  StringUtils.convertToInt(st);
-	    //});
 	}
 	
 	//Test the adjacency array
@@ -76,7 +74,7 @@ class DAGTest {
 	}
 	
 	//test that the vertex passed through is valid for the graph(Nonnegative
-	@Test(expected = IllegalArgumentException.class)
+	@Test//(expected = IllegalArgumentException.class)
 	public void testValidVertex()
 	{
 		DAG validTest = new DAG(3);
@@ -88,6 +86,11 @@ class DAGTest {
 		//will not throw exception, but let it pass through
 		validTest.addEdge(1, 2);
 		assertEquals("Should contain 1 edge", 1, validTest.E());
+		
+		//assertThrows(IllegalArgumentException.class, () -> {
+	    //  StringUtils.convertToInt(st);
+	    //});
+		
 	}
 	
 	//test that adding an edge between two vertices crates a connection
