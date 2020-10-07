@@ -80,9 +80,9 @@ class DAGTest {
 	{
 		DAG validTest = new DAG(3);
 		//try add negative values, will throw exception
-		validTest.addEdge(-1, 2);
-		validTest.addEdge(1, -2);
-		validTest.addEdge(-1, -2);
+		assertThrows(IllegalArgumentException.class, () -> {validTest.addEdge(-1, 2);});
+		assertThrows(IllegalArgumentException.class, () -> {validTest.addEdge(1, -2);});
+		assertThrows(IllegalArgumentException.class, () -> {validTest.addEdge(-1, -2);});
 		assertEquals("Should contain no edges", 0, validTest.E());
 		//will not throw exception, but let it pass through
 		validTest.addEdge(1, 2);
@@ -146,17 +146,13 @@ class DAGTest {
 		//swapping around the vertices v and w
 		assertEquals("", 5, directAcyclic.findLCA(1, 5));
 		assertEquals("", 5, directAcyclic.findLCA(5, 1));
+		
+		
 		//same v as w
 		assertEquals("Can be its own ancestor", 3, acyclic.findLCA(3, 3));
 		//empty graph
 		DAG emptyG = new DAG(0);
 		assertThrows(IllegalArgumentException.class, () -> {acyclic.findLCA(3, 3);});
-		//assertEquals("Should throw exception", null, acyclic.findLCA(3, 3));
-		
-		//assertThrows(IllegalArgumentException.class, () -> {
-	    //  StringUtils.convertToInt(st);
-	    //});
-		
 	}
 	
 	//function to create an acyclic graph that I will use in the tests
