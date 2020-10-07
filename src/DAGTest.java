@@ -1,11 +1,7 @@
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
-
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 class DAGTest {
 
@@ -32,14 +28,20 @@ class DAGTest {
 	}
 	
 	//Test the outdegree of a vertex in the graph
-	@Test(expected = IllegalArgumentException.class)
+	@Test//(expected = IllegalArgumentException.class)
 	public void testOutdegree()
 	{
 		acyclicGraph();//has no cycle
 		cycleGraph();//has cycle
-		assertEquals("fails due to the exception thrown for out of bounds number", null, acyclic.outdegree(9));
+		assertThrows(IllegalArgumentException.class, () -> {acyclic.outdegree(9);});
+		
+		//assertThrows(IllegalArgumentException.class, () -> {
+	    //  StringUtils.convertToInt(st);
+	    //});
+		
+		/*assertEquals("fails due to the exception thrown for out of bounds number", null, acyclic.outdegree(9));
 		assertEquals("0 only has one outdegree", 1, acyclic.outdegree(0));	
-		assertEquals("0 for the cycle graph has two outdegree edges", 2, cycle.outdegree(0));
+		assertEquals("0 for the cycle graph has two outdegree edges", 2, cycle.outdegree(0));*/
 	}
 	
 	//Test the adjacency array
@@ -190,4 +192,5 @@ class DAGTest {
 	}	
 
 }
+
 
