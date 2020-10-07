@@ -18,14 +18,15 @@ class DAGTest {
 	}
 	
 	//Test the indegree of a vertex in the graph
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testIndegree()
 	{
-		acyclicGraph();//has no cycle
-		cycleGraph();//has cycle
-		assertEquals("fails due the exception thrown", null, acyclic.indegree(-3));
-		assertEquals("A straight line of vertices so each will only have one", 1, acyclic.indegree(5));
-		assertEquals("2 edges leading into vertex eight", 2, cycle.indegree(8));
+		acyclicGraph();
+		cycleGraph();
+		assertEquals(1, acyclic.indegree(5));
+		assertThrows(IllegalArgumentException.class, () -> {acyclic.indegree(-3);});
+		assertEquals(1, acyclic.indegree(5));
+		assertEquals( 2, cycle.indegree(8));
 	}
 	
 	//Test the outdegree of a vertex in the graph
