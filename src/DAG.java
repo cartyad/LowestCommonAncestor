@@ -45,7 +45,7 @@ public class DAG {
 	private void validateVertex(int v){
         if((v<0)||(v>=V))
         {
-            throw new IllegalArgumentException("Number of Edges is less than 1");
+            throw new IllegalArgumentException("Number of Edges is less than 1 or greater than the otal number of edges");
         }
     }
 	
