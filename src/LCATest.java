@@ -119,7 +119,13 @@ class LCATest {
 		
 		assertEquals(acyclicGraph.findLCA(2, 3), 3);
 		assertEquals(directAcyclicGraph.findLCA(7, 8), 8);
-		assertEquals(binaryTree.findLCA(5, 2), 2);
+		assertEquals(directAcyclicGraph.findLCA(7, 5), 7);
+		
+		assertEquals(binaryTree.findLCA(5, 2), 5);
+		assertEquals(binaryTree.findLCA(5, 1), 3);
+		//assertEquals(binaryTree.findLCA(1, 8), 1);
+		assertEquals(binaryTree.findLCA(7, 4), 2);
+		assertEquals(binaryTree.findLCA(6, 2), 5);
 
 		assertEquals(7, directAcyclicGraph.findLCA(3, 4));
 		assertEquals(7, directAcyclicGraph.findLCA(1, 4));
@@ -212,14 +218,23 @@ class LCATest {
 	
 	public void createSampleBinaryTree()
 	{
-		binaryTree.addEdge(1, 0);
+		/*binaryTree.addEdge(1, 0);
 		binaryTree.addEdge(1, 8);
 		binaryTree.addEdge(3, 1);
 		binaryTree.addEdge(3, 5);
 		binaryTree.addEdge(5, 6);
 		binaryTree.addEdge(5, 2);
 		binaryTree.addEdge(2, 7);
-		binaryTree.addEdge(2, 4);
+		binaryTree.addEdge(2, 4);*/
+		
+		binaryTree.addEdge(0, 1);
+		binaryTree.addEdge(8, 1);
+		binaryTree.addEdge(1, 3);
+		binaryTree.addEdge(5, 3);
+		binaryTree.addEdge(6, 5);
+		binaryTree.addEdge(2, 5);
+		binaryTree.addEdge(7, 2);
+		binaryTree.addEdge(4, 2);
 
 	}
 	

@@ -194,7 +194,7 @@ public class LCA {
     			}
     		}
     	}
-    	return -1;//returns -1 if no ancestor found
+    	return -1;
     }  
-
+    
 }
