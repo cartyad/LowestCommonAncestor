@@ -83,6 +83,19 @@ class LCATest {
 	}
 	
 	@Test
+	public void testValidVertex()
+	{
+		LCA validTestGraph = new LCA(3);
+
+		assertThrows(IllegalArgumentException.class, () -> {validTestGraph.addEdge(-1, 2);});
+		assertThrows(IllegalArgumentException.class, () -> {validTestGraph.addEdge(1, -2);});
+		assertThrows(IllegalArgumentException.class, () -> {validTestGraph.addEdge(-1, -2);});
+		assertEquals(0, validTestGraph.E());
+		validTestGraph.addEdge(1, 2);
+		assertEquals(1, validTestGraph.E());
+	}
+	
+	@Test
 	public void testBinaryTreeConstructor() 
 	{
 		createSampleBinaryTree();
