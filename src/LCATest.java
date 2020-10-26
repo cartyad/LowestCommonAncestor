@@ -5,16 +5,18 @@ import org.junit.jupiter.api.Test;
 
 class LCATest {
 	
+	LCA emptyTree = new LCA(0);
 	LCA binaryTree = new LCA(9);
 	LCA acyclicGraph =new LCA(8);
 	LCA cycleGraph = new LCA(9);
 	LCA directAcyclicGraph = new LCA(9);
 
-	/*@Test
-	public void testNullTreeError() 
+	@Test
+	public void testEmptyTree() 
 	{
-		assertNull(tree.root);
-	}*/
+		assertNull(emptyTree.V());
+		assertNull(emptyTree.E());
+	}
 	
 	@Test
 	public void testBinaryTreeConstructor() 
