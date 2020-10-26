@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 class LCATest {
 	
-	LCA tree = new LCA();
-	LCA acyclic =new LCA(8);
-	LCA cycle = new LCA(9);
-	LCA directAcyclic = new LCA(9);
+	LCA binaryTree = new LCA(9);
+	LCA acyclicGraph =new LCA(8);
+	LCA cycleGraph = new LCA(9);
+	LCA directacyclicGraphGraph = new LCA(9);
 
-	@Test
+	/*@Test
 	public void testNullTreeError() 
 	{
 		assertNull(tree.root);
-	}
+	}*/
 	
 	@Test
 	public void testTreeConstructor() 
@@ -70,20 +70,29 @@ class LCATest {
 	}
 	
 	
+	public void acyclicGraphConstructor(){
+		//1->2->3->4->5->6->7
+		acyclicGraph.addEdge(0, 1);
+		acyclicGraph.addEdge(1, 2);
+		acyclicGraph.addEdge(2, 3);
+		acyclicGraph.addEdge(3, 4);
+		acyclicGraph.addEdge(4, 5);
+		acyclicGraph.addEdge(5, 6);
+		acyclicGraph.addEdge(6, 7);
+	}
 	
 	
-	
-	public void createSampleTree()
+	public void createSampleBinaryTree()
 	{
-		tree.root = new Node(3);
-		tree.root.left = new Node(5);
-		tree.root.right = new Node(1);
-		tree.root.left.left = new Node(6);
-		tree.root.left.right = new Node(2);
-		tree.root.right.left = new Node(0);
-		tree.root.right.right = new Node(8);
-		tree.root.left.right.left = new Node(7);
-		tree.root.left.right.right = new Node(4);	
+		binaryTree.addEdge(1, 0);
+		binaryTree.addEdge(1, 8);
+		binaryTree.addEdge(3, 1);
+		binaryTree.addEdge(3, 5);
+		binaryTree.addEdge(5, 6);
+		binaryTree.addEdge(5, 2);
+		binaryTree.addEdge(2, 7);
+		binaryTree.addEdge(2, 4);
+
 	}
 
 }
