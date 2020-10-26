@@ -8,7 +8,7 @@ class LCATest {
 	LCA binaryTree = new LCA(9);
 	LCA acyclicGraph =new LCA(8);
 	LCA cycleGraph = new LCA(9);
-	LCA directacyclicGraphGraph = new LCA(9);
+	LCA directAcyclicGraph = new LCA(9);
 
 	/*@Test
 	public void testNullTreeError() 
@@ -94,5 +94,32 @@ class LCATest {
 		binaryTree.addEdge(2, 4);
 
 	}
+	
+	public void directAcyclicGraphConstructor(){
+   
+		directAcyclicGraph.addEdge(0, 1);
+		directAcyclicGraph.addEdge(0, 2);
+		directAcyclicGraph.addEdge(1, 3);
+		directAcyclicGraph.addEdge(2, 4);
+		directAcyclicGraph.addEdge(3, 5);
+		directAcyclicGraph.addEdge(4, 6);
+		directAcyclicGraph.addEdge(5, 7);
+		directAcyclicGraph.addEdge(6, 7);
+		directAcyclicGraph.addEdge(7, 8);
+	}
+	
+	public void cycleGraphConstructor()
+	{
+		
+		cycleGraph.addEdge(0, 1);
+		cycleGraph.addEdge(0, 2);
+		cycleGraph.addEdge(1, 2);
+		cycleGraph.addEdge(2, 4);
+		cycleGraph.addEdge(4, 3);
+		cycleGraph.addEdge(3, 1);
+		cycleGraph.addEdge(3, 6);
+		cycleGraph.addEdge(6, 8);
+		cycleGraph.addEdge(7, 8);
+	}	
 
 }
