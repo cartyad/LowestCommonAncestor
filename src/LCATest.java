@@ -36,44 +36,11 @@ class LCATest {
 		assertEquals("null",3 ,binaryTree.findLCA(3, 3));
 	}
 	
-	@Test
-	public void testIdenticalNodeInput()
-	{
-		/*
-		createSampleTree();
-		assertEquals(3 ,tree.findLCA(3, 3));
-		assertEquals(3 ,tree.findLCA(3, 5));
-		assertEquals(3 ,tree.findLCA(1, 3));
-		assertEquals(1 ,tree.findLCA(1, 1));
-		assertEquals(5 ,tree.findLCA(5, 5)); */
-	}
 	
-	@Test
-	public void testSmallTree() {
-		tree.root = new Node(3);
-		tree.root.left = new Node(5);
-		assertEquals(3 ,tree.root.value);
-		assertEquals(5 ,tree.root.left.value);
-		assertNull(tree.root.right);
-		assertEquals(3 ,tree.findLCA(3, 5));
-		assertEquals(3 ,tree.findLCA(5, 3));
-	}
-	
-	
-	@Test
-	public void testTree() 
-	{
-		createSampleTree();
-		assertEquals(3 ,tree.findLCA(6, 1));
-		assertEquals(2 ,tree.findLCA(7, 4));
-		assertEquals(1 ,tree.findLCA(0, 8));
-		assertEquals(3 ,tree.findLCA(1, 5));
-		assertEquals(3 ,tree.findLCA(5, 1));
-	}
 	
 	
 	public void acyclicGraphConstructor(){
-		//1->2->3->4->5->6->7
+		
 		acyclicGraph.addEdge(0, 1);
 		acyclicGraph.addEdge(1, 2);
 		acyclicGraph.addEdge(2, 3);
