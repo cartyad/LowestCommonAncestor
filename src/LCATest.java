@@ -110,6 +110,34 @@ class LCATest {
 	}
 	
 	@Test
+	public void testLCA()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		directAcyclicGraphConstructor();
+		createSampleBinaryTree();
+		
+		assertEquals(acyclicGraph.findLCA(2, 3), 3);
+		assertEquals(directAcyclicGraph.findLCA(7, 8), 7);
+		assertEquals(binaryTree.findLCA(5, 1), 3);
+		
+		assertEquals(7, directAcyclicGraph.findLCA(3, 4));
+		assertEquals(7, directAcyclicGraph.findLCA(1, 4));
+		assertEquals(7, directAcyclicGraph.findLCA(5, 2));
+		
+		assertEquals(5, directAcyclicGraph.findLCA(1, 5));
+		assertEquals(5, directAcyclicGraph.findLCA(5, 1));
+		assertEquals(3, directAcyclicGraph.findLCA(3, 3));
+		
+		assertEquals(3, acyclicGraph.findLCA(3, 3));
+		assertEquals(3, directAcyclicGraph.findLCA(3, 3));
+		assertEquals(3, binaryTree.findLCA(3, 3));
+		
+		LCA emptyGraph = new LCA(0);
+		assertThrows(IllegalArgumentException.class, () -> {emptyGraph.findLCA(3, 3);});
+	}
+	
+	@Test
 	public void testBinaryTreeConstructor() 
 	{
 		createSampleBinaryTree();
