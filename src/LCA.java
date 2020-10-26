@@ -85,6 +85,21 @@ public class LCA {
     	return indegree[v];
     }
     
+  //returns the vertices adjacent from vertex v
+    public int[] adj(int v)
+    {
+    	validateVertex(v);
+    	int[] temp = new int[outdegree[v]];
+    	int count =0;
+    	for(int i=0;i<V;i++){
+    		if(adj[v][i]==1){
+    			temp[count]=i;
+    			count++;
+    		}
+    	}
+    	return temp;
+    }
+    
 	public int findLCA(int v, int w) 
 	{	
 		path1.clear();
