@@ -10,6 +10,26 @@ public class LCA {
 	private int[] indegree; // indegree of vertex v
 	private int[] visited;  //vertices that have been visited
 	
+	public LCA(int V){
+		if(V<0){
+			throw new IllegalArgumentException("Number of vertices in the DAG must be greater than 0.");
+		}
+		else{
+			this.V = V;
+			this.E = 0;
+			indegree = new int[V];
+			indegree = new int[V];
+			outdegree = new int[V];
+			visited = new int[V];
+			adj = new int[V][V];
+			for(int i = 0; i<V; i++){//sets up an empty graph in 2D array
+				for(int j=0;j<V;j++){
+					adj[i][j] = 0;
+				}
+			}
+		}
+	}
+	
 	public int findLCA(int v, int w) 
 	{	
 		path1.clear();
