@@ -139,7 +139,35 @@ class LCATest {
 		assertEquals( 8, acyclicGraph.E());
 	}
 	
-	
+	@Test
+	public void testLCAError()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		directAcyclicGraphConstructor();
+		createSampleBinaryTree();
+		
+		//Cyclic Graph Error Tests
+		assertThrows(IllegalArgumentException.class, () -> {cycleGraph.findLCA(1, 4);});
+		assertThrows(IllegalArgumentException.class, () -> {cycleGraph.findLCA(100, 40);});
+		assertThrows(IllegalArgumentException.class, () -> {cycleGraph.findLCA(-1, 4);});
+		
+		//Acyclic Graph Error Tests
+		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.findLCA(-1, 4);});
+		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.findLCA(1, 40);});
+		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.findLCA(100, 400);});
+		
+		//Direct Acyclic Graph Error Tests
+		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(-1, 4);});
+		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(1, 40);});
+		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(100, 400);});
+		
+		//Direct Acyclic Graph Error Tests
+		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(-1, 4);});
+		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(1, 40);});
+		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(100, 400);});
+		
+	}
 	
 	public void acyclicGraphConstructor(){
 		
