@@ -150,9 +150,10 @@ class LCATest {
 	public void testNonExistingNodesWithinTheBinaryTree()
 	{
 		createSampleBinaryTree();
-		assertEquals("Element doesn't exist expect -1",-1 ,binaryTree.findLCA(1, 23));
-		assertEquals("Elements don't exist expect -1",-1,binaryTree.findLCA(9,10));
-		assertEquals("null",3 ,binaryTree.findLCA(3, 3));
+		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(1, 23);});
+		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(9, 10);});
+		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(-100, 400);});
+	
 	}
 	
 	@Test
@@ -190,7 +191,7 @@ class LCATest {
 		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(1, 40);});
 		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(100, 400);});
 		
-		//Direct Acyclic Graph Error Tests
+		//Binary Tree Graph Error Tests
 		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(-1, 4);});
 		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(1, 40);});
 		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(100, 400);});
