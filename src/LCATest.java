@@ -119,8 +119,7 @@ class LCATest {
 		
 		assertEquals(acyclicGraph.findLCA(2, 3), 3);
 		assertEquals(directAcyclicGraph.findLCA(7, 8), 8);
-		//assertEquals(binaryTree.findLCA(5, 1), 3);
-		
+
 		assertEquals(7, directAcyclicGraph.findLCA(3, 4));
 		assertEquals(7, directAcyclicGraph.findLCA(1, 4));
 		assertEquals(7, directAcyclicGraph.findLCA(5, 2));
