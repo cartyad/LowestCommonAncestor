@@ -56,6 +56,33 @@ class LCATest {
 	}
 	
 	@Test
+	public void testEdgesInConstructedGraph()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		directAcyclicGraphConstructor();
+		createSampleBinaryTree();
+		assertEquals( 7, acyclicGraph.E());
+		assertEquals(9, cycleGraph.E());
+		assertEquals(9, directAcyclicGraph.E());
+		assertEquals(8 ,binaryTree.E());
+	}
+	
+	//test the number of vertices within a graph
+	@Test
+	public void testV()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		directAcyclicGraphConstructor();
+		createSampleBinaryTree();
+		assertEquals(8, acyclicGraph.V());
+		assertEquals(9, cycleGraph.V());
+		assertEquals(9, directAcyclicGraph.V());
+		assertEquals(9 ,binaryTree.V());
+	}
+	
+	@Test
 	public void testBinaryTreeConstructor() 
 	{
 		createSampleBinaryTree();
