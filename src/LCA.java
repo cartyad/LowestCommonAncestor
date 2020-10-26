@@ -51,13 +51,24 @@ public class LCA {
     }
     
   //adds directed edge from v to w
-    public void addEdge(int v, int w){
+    public void addEdge(int v, int w)
+    {
     	validateVertex(v);
     	validateVertex(w);
     	adj[v][w]=1;
     	indegree[w]++;
     	outdegree[v]++;
     	E++;
+    }
+    
+  //Removes an edge from v to w
+    public void removeEdge(int v, int w){
+    	validateVertex(v);
+    	validateVertex(w);
+    	adj[v][w]=0;
+    	indegree[w]--;
+    	outdegree[v]--;
+    	E--;
     }
     
 	public int findLCA(int v, int w) 
