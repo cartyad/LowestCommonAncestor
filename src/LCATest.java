@@ -17,33 +17,33 @@ class LCATest {
 	}*/
 	
 	@Test
-	public void testTreeConstructor() 
+	public void testBinaryTreeConstructor() 
 	{
-		//Create a tree with only one single node, the root
-		Node rootNode = new Node(0);
-		assertEquals("Root Value is Zero",0 ,rootNode.value);
-		assertEquals("Only node is root so null is expected",null ,rootNode.right);
-		assertEquals("Only node is root so null is expected",null ,rootNode.left);
+		createSampleBinaryTree();
+		assertEquals(9 ,binaryTree.V());
+		assertEquals(8 ,binaryTree.E());
+		
 	}
 	
 	@Test
-	public void testNonExistingNodesWithinTheTree()
+	public void testNonExistingNodesWithinTheBinaryTree()
 	{
-		createSampleTree();
-		assertEquals("Element doesn't exist expect -1",-1 ,tree.findLCA(1, 23));
-		assertEquals("Elements don't exist expect -1",-1,tree.findLCA(9,10));
-		assertEquals("null",3 ,tree.findLCA(3, 3));
+		createSampleBinaryTree();
+		assertEquals("Element doesn't exist expect -1",-1 ,binaryTree.findLCA(1, 23));
+		assertEquals("Elements don't exist expect -1",-1,binaryTree.findLCA(9,10));
+		assertEquals("null",3 ,binaryTree.findLCA(3, 3));
 	}
 	
 	@Test
 	public void testIdenticalNodeInput()
 	{
+		/*
 		createSampleTree();
 		assertEquals(3 ,tree.findLCA(3, 3));
 		assertEquals(3 ,tree.findLCA(3, 5));
 		assertEquals(3 ,tree.findLCA(1, 3));
 		assertEquals(1 ,tree.findLCA(1, 1));
-		assertEquals(5 ,tree.findLCA(5, 5));
+		assertEquals(5 ,tree.findLCA(5, 5)); */
 	}
 	
 	@Test
