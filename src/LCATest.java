@@ -19,6 +19,13 @@ class LCATest {
 	}
 	
 	@Test
+	public void testNegativeDAG() 
+	{
+		
+		assertThrows(IllegalArgumentException.class, () -> {LCA negativeTest = new LCA(-2);});		
+	}
+	
+	@Test
 	public void testBinaryTreeConstructor() 
 	{
 		createSampleBinaryTree();
