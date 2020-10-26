@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 class LCATest {
 	
 	LCA tree = new LCA();
+	LCA acyclic =new LCA(8);
+	LCA cycle = new LCA(9);
+	LCA directAcyclic = new LCA(9);
 
 	@Test
 	public void testNullTreeError() 
@@ -65,6 +68,8 @@ class LCATest {
 		assertEquals(3 ,tree.findLCA(1, 5));
 		assertEquals(3 ,tree.findLCA(5, 1));
 	}
+	
+	
 	
 	
 	
