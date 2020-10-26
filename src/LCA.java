@@ -100,12 +100,23 @@ public class LCA {
     	return temp;
     }
     
-	public int findLCA(int v, int w) 
-	{	
-		path1.clear();
-		path2.clear();
-		return findLCA(root, v, w);
-	}
+    
+    
+  //This public function is used to find the lowest commond ancestor in a directed acyclic graph
+    public int findLCA(int v, int w){
+    	validateVertex(v);
+    	validateVertex(w);
+    	boolean cyclicGraph = hasCycle();
+    	if(E>0 && !cyclicGraph)
+    	{
+    		return LCAUtil(v,w);
+    	}
+    	else{
+    		throw new IllegalArgumentException("This graph is not an acyclic graph.");
+    	}
+    }
+    
+    
 	
 	private int findLCA(Node root, int v, int w)
 	{
