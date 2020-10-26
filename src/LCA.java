@@ -31,10 +31,25 @@ public class LCA {
 	}
 	
 	 //returns number of vertices in DAG
-    public int V(){
+    public int V()
+    {
         return V;
     }
-	
+    
+    //returns number of edges in DAG
+    public int E(){
+        return E;
+    }
+    
+    //throws illegal exception if the vertex put in, is out of bounds
+    private void validateVertex(int v)
+    {
+        if((v<0)||(v>=V))
+        {
+            throw new IllegalArgumentException("Edgesless than one means no verices are joined, and if there is a cycle it cannot be moved");
+        }
+    }
+    
 	public int findLCA(int v, int w) 
 	{	
 		path1.clear();
