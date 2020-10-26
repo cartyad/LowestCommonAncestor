@@ -30,6 +30,11 @@ public class LCA {
 		}
 	}
 	
+	 //returns number of vertices in DAG
+    public int V(){
+        return V;
+    }
+	
 	public int findLCA(int v, int w) 
 	{	
 		path1.clear();
