@@ -177,10 +177,12 @@ public class LCA {
     		wMarked[j]=false;
     	}
     	
+    	vMarked[v] =true;
+		wMarked[w] =true;
+    	
     	for(int i =0;i<V;i++)
     	{
-    		vMarked[v] =true;
-    		wMarked[w] =true;
+    		
     		for(int j = 0; j<V;j++)
     		{
     			if(adj[i][j]==1 && vMarked[i])
@@ -189,12 +191,14 @@ public class LCA {
     				vArr[vCount]=j;
     				vMarked[j]=true;
     			}
-    			if(adj[i][j]==1 && wMarked[i]){
+    			if(adj[i][j]==1 && wMarked[i])
+    			{
     				wCount++;
     				wArr[wCount]=j;
     				wMarked[j]=true;
     			}
-    			if(wArr[wCount]==vArr[vCount]){
+    			if(wArr[wCount]==vArr[vCount])
+    			{
     				return wArr[wCount];
     			}
     		}

@@ -126,10 +126,11 @@ class LCATest {
 		
 		assertEquals(binaryTree.findLCA(5, 2), 5);
 		assertEquals(binaryTree.findLCA(5, 1), 3);
-		//assertEquals(binaryTree.findLCA(1, 8), 1);
+		assertEquals(binaryTree.findLCA(0, 1), 1);
 		assertEquals(binaryTree.findLCA(7, 4), 2);
 		//assertEquals(binaryTree.findLCA(4, 6), 5);
 		//assertEquals(binaryTree.findLCA(6, 8), 3);
+		//assertEquals(binaryTree.findLCA(1, 8), 1);
 		
 		assertEquals(smallBinaryTree.findLCA(1, 2), 0);
 		assertEquals(smallBinaryTree.findLCA(3, 4), 1);
@@ -152,7 +153,7 @@ class LCATest {
 		
 		assertEquals(3, acyclicGraph.findLCA(3, 3));
 		assertEquals(3, directAcyclicGraph.findLCA(3, 3));
-		//assertEquals(3, binaryTree.findLCA(3, 3));
+		assertEquals(3, binaryTree.findLCA(3, 3));
 		
 		LCA emptyGraph = new LCA(0);
 		assertThrows(IllegalArgumentException.class, () -> {emptyGraph.findLCA(3, 3);});
