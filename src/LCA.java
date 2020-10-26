@@ -2,10 +2,13 @@ import java.util.ArrayList;
 import java.util.List; 
 
 public class LCA {
-	Node root;
 	
-	private List<Integer> path1 = new ArrayList<>();
-	private List<Integer> path2 = new ArrayList<>();
+	private int V;//# of vertices in graph
+	private int E;//# of edges in graph
+	private int[][] adj; //adjacency list for vertex v - changed to 2D array
+	private int[] outdegree;//outdegree of vertex v
+	private int[] indegree; // indegree of vertex v
+	private int[] visited;  //vertices that have been visited
 	
 	public int findLCA(int v, int w) 
 	{	
