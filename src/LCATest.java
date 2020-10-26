@@ -37,6 +37,16 @@ class LCATest {
 	}
 	
 	@Test
+	public void testOutdegree()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.outdegree(9);});
+		assertEquals(1, acyclicGraph.outdegree(0));
+		assertEquals(2, cycleGraph.outdegree(0));
+	}
+	
+	@Test
 	public void testBinaryTreeConstructor() 
 	{
 		createSampleBinaryTree();
