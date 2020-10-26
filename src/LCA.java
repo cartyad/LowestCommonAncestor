@@ -102,7 +102,7 @@ public class LCA {
     
     
     
-  //This public function is used to find the lowest commond ancestor in a directed acyclic graph
+  //This public function is used to find the lowest common ancestor in a directed acyclic graph
     public int findLCA(int v, int w){
     	validateVertex(v);
     	validateVertex(w);
@@ -171,15 +171,20 @@ public class LCA {
     	int wCount = 0;
     	vArr[vCount]=v;
     	wArr[wCount]=w;
-    	for(int j=0; j<V;j++){//mark all vertices as not been visited yet
+    	for(int j=0; j<V;j++)
+    	{
     		vMarked[j]=false;
     		wMarked[j]=false;
     	}
-    	for(int i =0;i<V;i++){
+    	
+    	for(int i =0;i<V;i++)
+    	{
     		vMarked[v] =true;
     		wMarked[w] =true;
-    		for(int j = 0; j<V;j++){
-    			if(adj[i][j]==1 && vMarked[i]){
+    		for(int j = 0; j<V;j++)
+    		{
+    			if(adj[i][j]==1 && vMarked[i])
+    			{
     				vCount++;
     				vArr[vCount]=j;
     				vMarked[j]=true;

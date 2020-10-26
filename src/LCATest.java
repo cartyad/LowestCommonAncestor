@@ -10,6 +10,7 @@ class LCATest {
 	LCA acyclicGraph =new LCA(8);
 	LCA cycleGraph = new LCA(9);
 	LCA directAcyclicGraph = new LCA(9);
+	LCA smallBinaryTree = new LCA(5);
 
 	@Test
 	public void testEmptyTree() 
@@ -79,6 +80,7 @@ class LCATest {
 		createSampleBinaryTree();
 		assertEquals(acyclicGraph.hasCycle(), false);
 		assertEquals(binaryTree.hasCycle(), false);
+		assertEquals(smallBinaryTree.hasCycle(), false);
 		assertTrue(cycleGraph.hasCycle());
 		assertFalse(directAcyclicGraph.hasCycle());
 	}
@@ -116,6 +118,7 @@ class LCATest {
 		cycleGraphConstructor();
 		directAcyclicGraphConstructor();
 		createSampleBinaryTree();
+		createSmallBinaryTree();
 		
 		assertEquals(acyclicGraph.findLCA(2, 3), 3);
 		assertEquals(directAcyclicGraph.findLCA(7, 8), 8);
@@ -125,19 +128,31 @@ class LCATest {
 		assertEquals(binaryTree.findLCA(5, 1), 3);
 		//assertEquals(binaryTree.findLCA(1, 8), 1);
 		assertEquals(binaryTree.findLCA(7, 4), 2);
-		assertEquals(binaryTree.findLCA(6, 2), 5);
+		//assertEquals(binaryTree.findLCA(4, 6), 5);
+		//assertEquals(binaryTree.findLCA(6, 8), 3);
+		
+		assertEquals(smallBinaryTree.findLCA(1, 2), 0);
+		assertEquals(smallBinaryTree.findLCA(3, 4), 1);
+		//assertEquals(smallBinaryTree.findLCA(4, 1), 0);
+		//assertEquals(smallBinaryTree.findLCA(3, 2), 0);
 
 		assertEquals(7, directAcyclicGraph.findLCA(3, 4));
 		assertEquals(7, directAcyclicGraph.findLCA(1, 4));
 		assertEquals(7, directAcyclicGraph.findLCA(5, 2));
-		
+		assertEquals(2, directAcyclicGraph.findLCA(0, 2));
+		assertEquals(3, directAcyclicGraph.findLCA(1, 3));
 		assertEquals(5, directAcyclicGraph.findLCA(1, 5));
 		assertEquals(5, directAcyclicGraph.findLCA(5, 1));
 		assertEquals(3, directAcyclicGraph.findLCA(3, 3));
 		
+		assertEquals(6, acyclicGraph.findLCA(6, 2));
+		assertEquals(7, acyclicGraph.findLCA(7, 3));
+		assertEquals(3, acyclicGraph.findLCA(3, 1));
+		assertEquals(1, acyclicGraph.findLCA(0, 1));
+		
 		assertEquals(3, acyclicGraph.findLCA(3, 3));
 		assertEquals(3, directAcyclicGraph.findLCA(3, 3));
-		assertEquals(3, binaryTree.findLCA(3, 3));
+		//assertEquals(3, binaryTree.findLCA(3, 3));
 		
 		LCA emptyGraph = new LCA(0);
 		assertThrows(IllegalArgumentException.class, () -> {emptyGraph.findLCA(3, 3);});
@@ -167,11 +182,15 @@ class LCATest {
 	{
 		acyclicGraphConstructor();
 		cycleGraphConstructor();
+		createSmallBinaryTree();
+		createSampleBinaryTree();
 		assertEquals(7, acyclicGraph.E());
 		acyclicGraph.addEdge(4, 6);
 		assertEquals(8, acyclicGraph.E());
 		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.addEdge(-1, -1);});
 		assertEquals( 8, acyclicGraph.E());
+		assertEquals( 4, smallBinaryTree.E());
+		assertEquals( 8, binaryTree.E());
 	}
 	
 	@Test
@@ -236,6 +255,14 @@ class LCATest {
 		binaryTree.addEdge(7, 2);
 		binaryTree.addEdge(4, 2);
 
+	}
+	
+	public void createSmallBinaryTree()
+	{
+		smallBinaryTree.addEdge(1, 0);
+		smallBinaryTree.addEdge(2, 0);
+		smallBinaryTree.addEdge(4, 1);
+		smallBinaryTree.addEdge(3, 1);
 	}
 	
 	public void directAcyclicGraphConstructor(){
