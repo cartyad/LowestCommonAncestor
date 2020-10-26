@@ -26,7 +26,7 @@ class LCATest {
 	}
 	
 	@Test
-	public void testIndegree()
+	public void testIndegreeFunctionality()
 	{
 		acyclicGraphConstructor();
 		cycleGraphConstructor();
@@ -37,13 +37,22 @@ class LCATest {
 	}
 	
 	@Test
-	public void testOutdegree()
+	public void testOutdegreeFunctionality()
 	{
 		acyclicGraphConstructor();
 		cycleGraphConstructor();
 		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.outdegree(9);});
 		assertEquals(1, acyclicGraph.outdegree(0));
 		assertEquals(2, cycleGraph.outdegree(0));
+	}
+	
+	@Test
+	public void testAdjancyArrayFunctionality()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		assertArrayEquals(new int[]{5}, acyclicGraph.adj(4));
+		assertArrayEquals(new int[]{1,2}, cycleGraph.adj(0));
 	}
 	
 	@Test
