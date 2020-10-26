@@ -113,7 +113,17 @@ class LCATest {
 		assertEquals("null",3 ,binaryTree.findLCA(3, 3));
 	}
 	
-	
+	@Test
+	public void testAddEdgeFunctionality()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		assertEquals(7, acyclicGraph.E());
+		acyclicGraph.addEdge(4, 6);
+		assertEquals(8, acyclicGraph.E());
+		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.addEdge(-1, -1);});
+		assertEquals( 8, acyclicGraph.E());
+	}
 	
 	
 	public void acyclicGraphConstructor(){
