@@ -71,6 +71,20 @@ public class LCA {
     	E--;
     }
     
+  //returns the number of directed edges out of vertex v
+    public int outdegree(int v)
+    {
+    	validateVertex(v);
+    	return outdegree[v];
+    }
+    
+    //returns the number of directed edges into vertex v
+    public int indegree(int v)
+    {
+    	validateVertex(v);
+    	return indegree[v];
+    }
+    
 	public int findLCA(int v, int w) 
 	{	
 		path1.clear();
