@@ -161,70 +161,40 @@ public class LCA {
   
         return false; 
     } 
-	
-	private int findLCA(Node root, int v, int w)
-	{
-		if (!findPath(root, v, path1) || !findPath(root, w, path2)) {
-			return -1;
-		}
-		int i;
-		for (i = 0; i < path1.size() && i < path2.size(); i++) {
-			if (!path1.get(i).equals(path2.get(i)))
-				break;
-		}
-		return path1.get(i-1);
-	}
-	
-	private boolean findPath(Node root, int n, List<Integer> path)
-	{
-		//Handles inputs of negative numbers and returns false
-		if(n<0){
-			return false;
-		}
-		
-		//Handles the input of a null root
-		if (root == null) 
-		{
-			return false;
-		}
-		
-		path.add(root.value);
-		//If the node's value is found return as true
-		if (root.value == n) 
-		{
-			return true;
-		}
-		//Reiterates the findPath function to search through nodes to the left of the current node
-		if (root.left != null && findPath(root.left, n, path)) 
-		{
-			return true;
-		}
-		//Reiterates the findPath function to search through nodes to the right of the current node
-		if (root.right != null && findPath(root.right, n, path)) 
-		{
-			return true;
-		}
-		path.remove(path.size()-1);
-		return false;
-	}
-	
-	
-	
-	public static void main(String[] args) {
-		LCA tree = new LCA();
-		tree.root = new Node(1); 
-        tree.root.left = new Node(2); 
-        tree.root.right = new Node(3); 
-        tree.root.left.left = new Node(4); 
-        tree.root.left.right = new Node(5); 
-        tree.root.right.left = new Node(6); 
-        tree.root.right.right = new Node(7); 
-  
-        System.out.println("LCA(4, 5): " + tree.findLCA(4,5)); 
-        System.out.println("LCA(4, 6): " + tree.findLCA(4,6)); 
-        System.out.println("LCA(3, 4): " + tree.findLCA(3,4)); 
-        System.out.println("LCA(2, 4): " + tree.findLCA(2,4));
-
-	}
+    
+    private int LCAUtil(int v, int w){
+    	int[] vArr = new int[E];
+    	int[] wArr = new int[E];
+    	boolean[] vMarked = new boolean[V];
+    	boolean[] wMarked = new boolean[V];
+    	int vCount =0;
+    	int wCount = 0;
+    	vArr[vCount]=v;
+    	wArr[wCount]=w;
+    	for(int j=0; j<V;j++){//mark all vertices as not been visited yet
+    		vMarked[j]=false;
+    		wMarked[j]=false;
+    	}
+    	for(int i =0;i<V;i++){
+    		vMarked[v] =true;
+    		wMarked[w] =true;
+    		for(int j = 0; j<V;j++){
+    			if(adj[i][j]==1 && vMarked[i]){
+    				vCount++;
+    				vArr[vCount]=j;
+    				vMarked[j]=true;
+    			}
+    			if(adj[i][j]==1 && wMarked[i]){
+    				wCount++;
+    				wArr[wCount]=j;
+    				wMarked[j]=true;
+    			}
+    			if(wArr[wCount]==vArr[vCount]){
+    				return wArr[wCount];
+    			}
+    		}
+    	}
+    	return -1;//returns -1 if no ancestor found
+    }  
 
 }
