@@ -68,7 +68,21 @@ class LCATest {
 		assertEquals(8 ,binaryTree.E());
 	}
 	
-	//test the number of vertices within a graph
+	@Test
+	public void testCycle()
+	{
+		LCA emptyGraph = new LCA(0);
+		assertFalse(emptyGraph.hasCycle());
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		directAcyclicGraphConstructor();
+		createSampleBinaryTree();
+		assertEquals(acyclicGraph.hasCycle(), false);
+		assertEquals(binaryTree.hasCycle(), false);
+		assertTrue(cycleGraph.hasCycle());
+		assertFalse(directAcyclicGraph.hasCycle());
+	}
+	
 	@Test
 	public void testV()
 	{
@@ -124,6 +138,7 @@ class LCATest {
 		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.addEdge(-1, -1);});
 		assertEquals( 8, acyclicGraph.E());
 	}
+	
 	
 	
 	public void acyclicGraphConstructor(){
