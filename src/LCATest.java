@@ -89,15 +89,6 @@ class LCATest {
 		assertEquals( 8, binaryTree.E());
 	}
 	
-	/*@Test
-	public void testAdjancyArrayFunctionality()
-	{
-		acyclicGraphConstructor();
-		cycleGraphConstructor();
-		assertArrayEquals(new int[]{5}, acyclicGraph.adj(4));
-		assertArrayEquals(new int[]{1,2}, cycleGraph.adj(0));
-	}*/
-	
 	@Test
 	public void testEdgesInConstructedGraph()
 	{
@@ -264,7 +255,7 @@ class LCATest {
 		
 		//Direct Acyclic Graph Error Tests
 		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(-1, 4);});
-		//assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(1, 40);});
+		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(1, 40);});
 		assertThrows(IllegalArgumentException.class, () -> {directAcyclicGraph.findLCA(100, 400);});
 		
 		//Binary Tree Graph Error Tests
@@ -285,7 +276,6 @@ class LCATest {
 		assertEquals("", 0, DAG.outdegree(4));
 		assertEquals("", 3, DAG.E());
 		assertEquals("", 10, DAG.V());
-		//String ans = "[5, 6]";
 		assertEquals("","[]", DAG.adj(4).toString());
 	}
 	
