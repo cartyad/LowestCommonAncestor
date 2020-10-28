@@ -42,7 +42,7 @@ class LCATest {
 	{
 		acyclicGraphConstructor();
 		cycleGraphConstructor();
-		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.outdegree(9);});
+		assertEquals(acyclicGraph.outdegree(9),-1);
 		assertEquals(1, acyclicGraph.outdegree(0));
 		assertEquals(2, cycleGraph.outdegree(0));
 	}
