@@ -131,6 +131,26 @@ class LCATest {
 	}
 	
 	@Test
+	public void testLCAForNoCommonAncestors(){
+		LCA DAG = new LCA(11);
+		//-----1----5----
+		//---0-|---/-----
+		//-----2--3---4--
+		DAG.addEdge(0, 1);
+		DAG.addEdge(0, 2);
+		DAG.addEdge(1, 2);
+		DAG.addEdge(2, 3);
+		DAG.addEdge(3, 4);
+		DAG.addEdge(1, 5);
+		DAG.addEdge(3, 5);
+		assertEquals(DAG.findLCA(1, 3),1);
+		assertEquals(DAG.findLCA(2, 3),2);
+		assertEquals(DAG.findLCA(5, 4),1);
+
+		assertEquals(-1, DAG.findLCA(7, 3));
+	}
+	
+	@Test
 	public void testV()
 	{
 		acyclicGraphConstructor();
