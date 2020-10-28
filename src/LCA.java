@@ -128,7 +128,7 @@ public class LCA {
 			throw new IllegalArgumentException("Graph has a Cycle");
 		}
 		//Reverse the dag, allows easier traversal
-		DAG backwards = reverse();
+		LCA backwards = reverse();
 		
 		//Locate the two points in the graph
 		ArrayList<Integer> vPath = backwards.BFS(v);
@@ -205,76 +205,21 @@ public class LCA {
     	return hasCycle;
     } 
     
-    public boolean isCyclicUtil(int i, boolean[] visited, 
-                                      boolean[] recStack)  
-    { 
-          
-        // Mark the current node as visited and 
-        // part of recursion stack 
-        if (recStack[i]) 
-            return true; 
-  
-        if (visited[i]) 
-            return false; 
-              
-        visited[i] = true; 
-  
-        recStack[i] = true; 
-        int [] children = adj(i); 
-      
-        for (int j=0; j<children.length; j++)
-        {
-        	if (isCyclicUtil(children[j], visited, recStack)) 
-                return true; 
+    public void findCycle(int v) {
+
+        marked[v] = true;
+        stack[v] = true;
+
+        for (int w : adj(v)) {
+            if(!marked[w]) {
+                findCycle(w);
+            } else if (stack[w]) {
+                hasCycle = true;
+                return;
+            }
         }
-             
-        recStack[i] = false; 
-  
-        return false; 
-    } 
-    
-    private int LCAUtil(int v, int w){
-    	int[] vArr = new int[E];
-    	int[] wArr = new int[E];
-    	boolean[] vMarked = new boolean[V];
-    	boolean[] wMarked = new boolean[V];
-    	int vCount =0;
-    	int wCount = 0;
-    	vArr[vCount]=v;
-    	wArr[wCount]=w;
-    	for(int j=0; j<V;j++)
-    	{
-    		vMarked[j]=false;
-    		wMarked[j]=false;
-    	}
-    	
-    	vMarked[v] =true;
-		wMarked[w] =true;
-    	
-    	for(int i =0;i<V;i++)
-    	{
-    		
-    		for(int j = 0; j<V;j++)
-    		{
-    			if(adj[i][j]==1 && vMarked[i])
-    			{
-    				vCount++;
-    				vArr[vCount]=j;
-    				vMarked[j]=true;
-    			}
-    			if(adj[i][j]==1 && wMarked[i])
-    			{
-    				wCount++;
-    				wArr[wCount]=j;
-    				wMarked[j]=true;
-    			}
-    			if(wArr[wCount]==vArr[vCount])
-    			{
-    				return wArr[wCount];
-    			}
-    		}
-    	}
-    	return -1;
-    }  
+
+        stack[v] = false;
+    }
     
 }
