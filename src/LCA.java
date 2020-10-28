@@ -60,12 +60,17 @@ public class LCA {
   //adds directed edge from v to w
     public void addEdge(int v, int w)
     {
-    	validateVertex(v);
-    	validateVertex(w);
-    	adj[v][w]=1;
-    	indegree[w]++;
-    	outdegree[v]++;
-    	E++;
+    	if((validateVertex(v)>0)&&(validateVertex(w)>0))
+	    {
+	    	adj[v].add(w);
+	    	indegree[w]++;
+	    	E++;
+	    }
+	    else
+	    {
+	    	throw new IllegalArgumentException("Invalid Vertices");
+	    }
+    	
     }
     
   //Removes an edge from v to w
