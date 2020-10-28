@@ -7,12 +7,16 @@ import java.util.LinkedList;
 
 public class LCA {
 	
-	private int V;//# of vertices in graph
-	private int E;//# of edges in graph
-	private int[][] adj; //adjacency list for vertex v - changed to 2D array
-	private int[] outdegree;//outdegree of vertex v
-	private int[] indegree; // indegree of vertex v
-	private int[] visited;  //vertices that have been visited
+	private int V;           // number of vertices in this digraph
+	private int E;                 // number of edges in this digraph
+	private ArrayList<Integer>[] adj;    // adj[v] = adjacency list for vertex v
+	private int[] indegree;        // indegree[v] = indegree of vertex v
+	private boolean marked[];		//Boolean List to track visited vertices
+	private boolean stack[];
+	private boolean hasCycle;	//True if cycle in graph//Order that vertices were visited
+	private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
+    private int[] distTo;      // distTo[v] = length of shortest s->v path
+
 	
 	public LCA(int V){
 		if(V<0){
