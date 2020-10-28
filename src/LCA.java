@@ -45,11 +45,15 @@ public class LCA {
     }
     
     //throws illegal exception if the vertex put in, is out of bounds
-    private void validateVertex(int v)
+    private int validateVertex(int v) 
     {
-        if((v<0)||(v>=V))
+        if (v < 0 || v >= V)
         {
-            throw new IllegalArgumentException("Edgesless than one means no verices are joined, and if there is a cycle it cannot be moved");
+        	return -1;        	
+        }
+        else
+        {
+        	return 1;        	
         }
     }
     
