@@ -74,27 +74,35 @@ public class LCA {
     }
     
   //Removes an edge from v to w
-    public void removeEdge(int v, int w){
+   /* public void removeEdge(int v, int w){
     	validateVertex(v);
     	validateVertex(w);
     	adj[v][w]=0;
     	indegree[w]--;
     	outdegree[v]--;
     	E--;
-    }
+    }*/
     
   //returns the number of directed edges out of vertex v
     public int outdegree(int v)
     {
-    	validateVertex(v);
-    	return outdegree[v];
+    	if(validateVertex(v)<0){
+			return -1;
+		}
+		else{
+			return adj[v].size();
+		}
     }
     
     //returns the number of directed edges into vertex v
     public int indegree(int v)
     {
-    	validateVertex(v);
-    	return indegree[v];
+    	if(validateVertex(v)<0){
+			return -1;
+		}
+		else{
+			return indegree[v];
+		}
     }
     
   //returns the vertices adjacent from vertex v
