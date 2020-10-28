@@ -164,22 +164,45 @@ public class LCA {
         return reverse;
     }
     
+    public ArrayList<Integer> BFS(int s)
+    {
+        // Mark all the vertices as not visited(By default set as false)
+        boolean visited[] = new boolean[V];
+ 
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        ArrayList<Integer> order= new ArrayList<Integer>();
+ 
+        visited[s]=true;
+        queue.add(s);
+        
+ 
+        while (queue.size() != 0)
+        {
+            // Dequeue a vertex from queue and print it
+            s = queue.poll();           
+            order.add(s);
+            // Get all adjacent vertices of the dequeued vertex s
+            // If a adjacent has not been visited, then mark it
+            // visited and enqueue it
+            Iterator<Integer> i = adj[s].listIterator();
+            while (i.hasNext())
+            {
+                int n = i.next();
+                if (!visited[n])
+                {
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+        
+        return order;
+        
+    }
+    
     public boolean hasCycle()  
-    { 
-          
-        // Mark all the vertices as not visited and 
-        // not part of recursion stack 
-        boolean[] visited = new boolean[V]; 
-        boolean[] recStack = new boolean[V]; 
-          
-          
-        // Call the recursive helper function to 
-        // detect cycle in different DFS trees 
-        for (int i = 0; i < V; i++) 
-            if (isCyclicUtil(i, visited, recStack)) 
-                return true; 
-  
-        return false; 
+    {   
+    	return hasCycle;
     } 
     
     public boolean isCyclicUtil(int i, boolean[] visited, 
