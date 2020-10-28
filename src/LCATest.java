@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -27,14 +28,33 @@ class LCATest {
 	}
 	
 	@Test
+	public void testInDegreeErrorHandling()
+	{
+		LCA DAG = new LCA(5);
+		assertEquals(-1, DAG.indegree(-3));
+		
+		acyclicGraphConstructor();
+		assertEquals(-1, acyclicGraph.indegree(-3));
+	}
+	
+	@Test
 	public void testIndegreeFunctionality()
 	{
 		acyclicGraphConstructor();
 		cycleGraphConstructor();
 		assertEquals(1, acyclicGraph.indegree(5));
-		assertEquals(-1, acyclicGraph.indegree(-3));
 		assertEquals(1, acyclicGraph.indegree(5));
 		assertEquals( 2, cycleGraph.indegree(8));
+	}
+	
+	@Test
+	public void testOutDegree()
+	{
+		LCA DAG = new LCA(5);
+		assertEquals(-1, DAG.outdegree(8));	
+		
+		acyclicGraphConstructor();
+		assertEquals(acyclicGraph.outdegree(9),-1);
 	}
 	
 	@Test
@@ -42,9 +62,31 @@ class LCATest {
 	{
 		acyclicGraphConstructor();
 		cycleGraphConstructor();
-		assertEquals(acyclicGraph.outdegree(9),-1);
 		assertEquals(1, acyclicGraph.outdegree(0));
 		assertEquals(2, cycleGraph.outdegree(0));
+	}
+	
+	@Test
+	public void testAddEdgeFunctionality(){
+		LCA DAG = new LCA(5);
+		assertThrows(IllegalArgumentException.class, () -> {DAG.addEdge(3, 9);});
+		assertThrows(IllegalArgumentException.class, () -> {DAG.addEdge(-2, -5);});
+	}
+	
+	@Test
+	public void testAddEdgeErrorHandlingFunctionality()
+	{
+		acyclicGraphConstructor();
+		cycleGraphConstructor();
+		createSmallBinaryTree();
+		createSampleBinaryTree();
+		assertEquals(7, acyclicGraph.E());
+		acyclicGraph.addEdge(4, 6);
+		assertEquals(8, acyclicGraph.E());
+		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.addEdge(-1, -1);});
+		assertEquals( 8, acyclicGraph.E());
+		assertEquals( 4, smallBinaryTree.E());
+		assertEquals( 8, binaryTree.E());
 	}
 	
 	/*@Test
@@ -78,11 +120,14 @@ class LCATest {
 		cycleGraphConstructor();
 		directAcyclicGraphConstructor();
 		createSampleBinaryTree();
+		
 		assertEquals(acyclicGraph.hasCycle(), false);
 		assertEquals(binaryTree.hasCycle(), false);
 		assertEquals(smallBinaryTree.hasCycle(), false);
-		//assertTrue(cycleGraph.hasCycle());
 		assertFalse(directAcyclicGraph.hasCycle());
+			
+		cycleGraph.findCycle(0);
+		assertTrue(cycleGraph.hasCycle());
 	}
 	
 	@Test
@@ -180,22 +225,6 @@ class LCATest {
 	}
 	
 	@Test
-	public void testAddEdgeFunctionality()
-	{
-		acyclicGraphConstructor();
-		cycleGraphConstructor();
-		createSmallBinaryTree();
-		createSampleBinaryTree();
-		assertEquals(7, acyclicGraph.E());
-		acyclicGraph.addEdge(4, 6);
-		assertEquals(8, acyclicGraph.E());
-		assertThrows(IllegalArgumentException.class, () -> {acyclicGraph.addEdge(-1, -1);});
-		assertEquals( 8, acyclicGraph.E());
-		assertEquals( 4, smallBinaryTree.E());
-		assertEquals( 8, binaryTree.E());
-	}
-	
-	@Test
 	public void testLCAError()
 	{
 		acyclicGraphConstructor();
@@ -223,6 +252,21 @@ class LCATest {
 		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(1, 40);});
 		assertThrows(IllegalArgumentException.class, () -> {binaryTree.findLCA(100, 400);});
 		
+	}
+	
+	@Test
+	public void testForDirectedGraph(){
+		LCA DAG = new LCA(10);
+		DAG.addEdge(1, 2);
+		DAG.addEdge(1, 3);
+		DAG.addEdge(3, 4);
+
+		assertEquals("", 1, DAG.indegree(4));
+		assertEquals("", 0, DAG.outdegree(4));
+		assertEquals("", 3, DAG.E());
+		assertEquals("", 10, DAG.V());
+		//String ans = "[5, 6]";
+		assertEquals("","[]", DAG.adj(4).toString());
 	}
 	
 	public void acyclicGraphConstructor(){
